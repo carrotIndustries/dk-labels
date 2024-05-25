@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript">
+			function update_preview() {
+				var mpn = document.forms[0].mpn.value;
+				var descr = document.forms[0].descr.value;
+				var qr = document.forms[0].qr.value;
+				var url = `/img?mpn=${mpn}&descr=${descr}&qr=${qr}`;
+				document.getElementById("preview").src = url;
+			}
+		</script>
+	</head>
+	<style type="text/css">
+		table {
+    font-size: 200%;
+}
+
+
+input {
+  height:100px;
+  font-size: 50%;
+  width: 100%;
+}
+
+table {
+  width: 100%
+}
+	</style>
+	<body>
+		<form method="post" action="/print">
+		<table>
+			<tr>
+				<td>MPN</td> <td> <input name="mpn" value="{{ ManufacturerPartNumber }}" onchange="update_preview()"/> </td>
+			</tr>
+			<tr>
+				<td>Descr</td> <td> <input name="descr" value="{{ ProductDescription }}" onchange="update_preview()"/> </td>
+			</tr>
+			<tr>
+				<td>DK PN</td> <td> <input name="qr" value="{{ DigiKeyPartNumber }}" onchange="update_preview()"/> </td>
+			</tr>
+		</table>
+		<img id="preview" src="/img?mpn={{ ManufacturerPartNumber }}&descr={{ ProductDescription }}&qr={{ DigiKeyPartNumber }}" style="border: 1px solid grey;">
+		<div>
+		<input type="submit" value="Print!" style="width: 100%; font-size:200%;" />
+		</div>
+		</form>
+	</body>
+	
+</html>
