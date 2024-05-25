@@ -23,7 +23,7 @@ A flask app running on my laptop then uses [DigiKey's
 API](https://developer.digikey.com/products/barcode/barcoding/product2dbarcode)
 for converting the barcode to MPN and description.
 
-![Form with MPN, description and DK PN](media/app.png)
+<img alt="Form with MPN, description and DK PN" src="https://raw.githubusercontent.com/carrotIndustries/dk-labels/main/media/app.png" width="50%" />
 
 After confirming and optionally making edits it then prints the label 
 on a [Phomemo 
