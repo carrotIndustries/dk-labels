@@ -9,7 +9,7 @@ from DigiKey pouches or manually copying part numbers.
 To reduce the ever-growing pile of DigiKey pouches I needed an 
 efficient way to generate labels to apply to the sample book pages.
 
-https://raw.githubusercontent.com/carrotIndustries/dk-labels/main/media/video.mp4
+https://github.com/carrotIndustries/dk-labels/assets/877304/2ee3b475-abf8-4c23-9cb7-c60ba25efb4c
 
 # Implementation
 
