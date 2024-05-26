@@ -60,7 +60,10 @@ class DigiKeyApi:
 			"Authorization": f"Bearer {self.get_access_token()}",
 			"X-DIGIKEY-Client-Id": self.client_id
 		}
-		r = self.http.request('GET', "https://api.digikey.com/Barcoding/v3/Product2DBarcodes/" + urllib.parse.quote(barcode), headers=headers)
+		url = "https://api.digikey.com/Barcoding/v3/Product2DBarcodes/" + urllib.parse.quote(barcode, safe='')
+		r = self.http.request('GET', url, headers=headers)
+		if r.status != 200 :
+			print(r.data.decode())
 		assert(r.status == 200)
 		return json.loads(r.data.decode())
 """

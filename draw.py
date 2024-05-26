@@ -58,7 +58,7 @@ def render_small_label(text, text2, qrtext=""):
         font = Pango.FontDescription(f"Cantarell Bold {font_size}")
         layout.set_font_description(font)
         ink, log = layout.get_pixel_extents()
-        if ink.height < height-9-mpn_font_size :
+        if ink.height < height-14-mpn_font_size :
             break
         else :
             font_size -= 1
@@ -67,20 +67,23 @@ def render_small_label(text, text2, qrtext=""):
     
     imgsurf.flush()
     if qrtext != "" :
-        qr = qrcode.QRCode(
-            version=2,
-            error_correction=qrcode.constants.ERROR_CORRECT_M,
-            box_size=2,
-            border=2,
-        )
-        qr.add_data(qrtext)
-        qr.make(fit=False)
+        try :
+            qr = qrcode.QRCode(
+                version=2,
+                error_correction=qrcode.constants.ERROR_CORRECT_M,
+                box_size=2,
+                border=2,
+            )
+            qr.add_data(qrtext)
+            qr.make(fit=False)
 
-        qrimg = qr.make_image(fill_color="black", back_color="white").get_image()
-        for x in range(qrimg.width):
-            for y in range(qrimg.height):
-                putpixel(imgsurf, width-65 + x, height-63 + y, qrimg.getpixel((x, y)))
-        imgsurf.mark_dirty()
+            qrimg = qr.make_image(fill_color="black", back_color="white").get_image()
+            for x in range(qrimg.width):
+                for y in range(qrimg.height):
+                    putpixel(imgsurf, width-65 + x, height-63 + y, qrimg.getpixel((x, y)))
+            imgsurf.mark_dirty()
+        except qrcode.exceptions.DataOverflowError :
+            pass
 
 
     return imgsurf

@@ -3,9 +3,9 @@
 	<head>
 		<script type="text/javascript">
 			function update_preview() {
-				var mpn = document.forms[0].mpn.value;
-				var descr = document.forms[0].descr.value;
-				var qr = document.forms[0].qr.value;
+				var mpn = encodeURIComponent(document.forms[0].mpn.value);
+				var descr = encodeURIComponent(document.forms[0].descr.value);
+				var qr = encodeURIComponent(document.forms[0].qr.value);
 				var url = `/img?mpn=${mpn}&descr=${descr}&qr=${qr}`;
 				document.getElementById("preview").src = url;
 			}
